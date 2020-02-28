@@ -1,13 +1,8 @@
 ---
-layout: default
+layout: page
 ---
 
-<ul>
-    {% for post in paginator.posts %}
-      <li>
-          <h2><a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title }}</a></h2>
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
-          <p>{{ post.content | strip_html | truncatewords:50 }}</p>
-      </li>
-    {% endfor %}
-</ul>
+Cryptoderps site for writeups of Hackthebox, CTF, Bug bounties, and other ramblings...always updating here...
+<p>
+<img alt="HTB" src="https://www.hackthebox.eu/badge/image/65570">
+</p>

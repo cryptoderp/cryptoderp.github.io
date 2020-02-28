@@ -1,0 +1,16 @@
+I"½<p><img src="/htb_box/img/2020-02-28-08-35-31.png" alt="" /></p>
+<h1 id="ai">AI</h1>
+<ul>
+  <li><a href="#ai">AI</a>
+    <ul>
+      <li><a href="#enumeration">Enumeration</a></li>
+      <li><a href="#exploits---work">Exploits - Work</a></li>
+      <li><a href="#user">User</a></li>
+      <li><a href="#privesc">PrivEsc</a></li>
+      <li><a href="#root">Root</a>
+        <h2 id="enumeration">Enumeration</h2>
+      </li>
+    </ul>
+  </li>
+</ul>
+:ET

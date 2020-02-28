@@ -1,17 +1,23 @@
-title: Hacker-Blog
-description: "A Jekyll Blog Theme For Hackers"
+title: Cryptoderp Writeups
+description: "Exploitive behavior"
 author:
-  name: "SomeHacker"
-  email: "someone@somewebsite.somedomain"
-  url: "https://ashishchaudhary.in/hacker-blog"
+  name: "cryptoderp"
+  email: 
+  url: "https://blog.syn-ops.com"
 
 baseurl: /
+# Jekyll 3 now only supports Kramdown for Markdown
+kramdown:
+  # Use GitHub flavored markdown, including triple backtick fenced code blocks
+  input: GFM
+  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
+  syntax_highlighter: rouge
 
 source: .
 destination: ./_site
-permalink: /:title
-paginate: 3
-paginate_path: /page/:num/
+permalink: /:title/
+paginate: 6
+paginate_path: 'htb_box/page:num/'
 
 defaults:
   -
@@ -28,5 +34,5 @@ plugins:
   - jekyll-sitemap
 
 # Custom variables
-owner : "SomeHacker"
+owner : "cryptoderp"
 year : "2020"
