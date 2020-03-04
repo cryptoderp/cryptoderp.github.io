@@ -1,6 +1,7 @@
 ---
 title: CrackThis!
 published: true
+categories: [challenge,reverse]
 ---
 # CrackThis! 
 - [CrackThis!](#crackthis)

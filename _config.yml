@@ -13,6 +13,10 @@ kramdown:
   # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
   syntax_highlighter: rouge
 
+collections:
+  category:
+    output: true
+
 source: .
 destination: ./_site
 permalink: /:title/
